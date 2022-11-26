@@ -1,7 +1,4 @@
 // PROVIDED CODE BELOW (LINES 1 - 80) DO NOT REMOVE
-
-const { default: fetch } = require("node-fetch")
-
 // The store will hold all information needed globally
 let store = {
 	track_id: undefined,
@@ -83,7 +80,7 @@ async function handleCreateRace() {
 	const { player_id, track_id } = store
 	
 	// const race = TODO - invoke the API call to create the race, then save the result
-	const race = createRace(player_id, track_id)
+	const race = await createRace(player_id, track_id)
 
 	// TODO - update the store with the race id
 	// For the API to work properly, the race id should be race id - 1
@@ -129,12 +126,16 @@ async function runCountdown() {
 
 		return new Promise(resolve => {
 			// TODO - use Javascript's built in setInterval method to count down once per second
+			const interval = setInterval(renderCountdown, 1000, timer)
 
 			// run this DOM manipulation to decrement the countdown for the user
 			document.getElementById('big-numbers').innerHTML = --timer
 
 			// TODO - if the countdown is done, clear the interval, resolve the promise, and return
-
+			if (timer === 0) {
+				clearInterval(interval)
+				return resolve()
+			}
 		})
 	} catch(error) {
 		console.log(error);
@@ -377,4 +378,10 @@ function accelerate(id) {
 	// POST request to `${SERVER}/api/races/${id}/accelerate`
 	// options parameter provided as defaultFetchOpts
 	// no body or datatype needed for this request
+	return fetch(`${SERVER}/api/accelerate`, {
+		method: 'POST',
+		...defaultFetchOpts()
+	})
+	.then(res => res.json())
+	.catch(err => console.log("Problem with accelerate request::", err))
 }
