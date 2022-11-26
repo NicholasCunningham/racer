@@ -100,6 +100,7 @@ async function handleCreateRace() {
 function runRace(raceID) {
 	return new Promise(resolve => {
 	// TODO - use Javascript's built in setInterval method to get race info every 500ms
+	const interval = setInterval()
 
 	/* 
 		TODO - if the race info status property is "in-progress", update the leaderboard by calling:
@@ -155,6 +156,7 @@ function handleSelectPodRacer(target) {
 	target.classList.add('selected')
 
 	// TODO - save the selected racer to the store
+	store = {...store, player_id: parseInt(target.id)}
 }
 
 function handleSelectTrack(target) {
@@ -170,12 +172,13 @@ function handleSelectTrack(target) {
 	target.classList.add('selected')
 
 	// TODO - save the selected track id to the store
-	
+	store = {...store, track_id: parseInt(target.id)}
 }
 
 function handleAccelerate() {
 	console.log("accelerate button clicked")
 	// TODO - Invoke the API call to accelerate
+	accelerate(store.race_id)
 }
 
 // HTML VIEWS ------------------------------------------------
