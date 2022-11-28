@@ -2,7 +2,13 @@
 
 /* -------------------  MOBILE  --------------------- */
 header {
-  background-image: url('https://via.placeholder.com/1150');
+  height: 30vh;
+  text-align: left;
+  background-image: url(../images/f_zero_logo_wide.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 50% 50%;
+  background-color: black;
 }
 
 main#two-columns {

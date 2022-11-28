@@ -3,7 +3,11 @@
 /* -------------------  MOBILE  --------------------- */
 
 header {
-  background-image: url('https://via.placeholder.com/1150');
+  background-image: url(../images/f_zero_logo_wide.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 75% 75%;
+  background-color: black;
 }
 
 

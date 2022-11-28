@@ -76,6 +76,9 @@ async function handleCreateRace() {
 	// TODO - Get player_id and track_id from the store
 	const { player_id, track_id } = store
 
+	if (!player_id) return alert('Please select a racer');
+	if (!track_id) return alert('Please select a track');
+
 	console.log("Player: ", player_id)
 	console.log("Track: ", track_id)
 	
