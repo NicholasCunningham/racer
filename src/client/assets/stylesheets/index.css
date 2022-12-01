@@ -21,11 +21,12 @@ body {
 }
 
 header {
+  background-color: black;
   background-image: url(../images/f_zero_logo.jpg);
-  background-size: cover;
+  background-size: 80% 100%;
   background-repeat: no-repeat;
   background-position: center;
-  height: 30vh;
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -86,20 +87,13 @@ main {
 
 section {
   max-width: 1280px;
-  margin: 0 auto;
+  margin: auto auto;
   padding: 30px 0;
 }
 
 footer {
   height: 200px;
   background-color: black;
-}
-
-#tracks {
-  align-content: center;
-  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(../images/track.jpg);
-  background-repeat: repeat-x;
-  background-position: center;
 }
 
 #track-chooser h3 {
@@ -115,19 +109,17 @@ footer {
   font-size: xx-large;
 }
 
+#race-chooser h3 {
+  text-align: center;
+}
+
 /* -------------------  TABLET  --------------------- */
 @media (min-width: 768px) {
-  header {
-    height: 100vh;
-  }
 }
 
 /* -------------------  DESKTOP  -------------------- */
 
 @media (min-width: 1224px) {
-  header {
-    height: 700px;
-  }
 }
 
 /* -------------------  LARGE SCREENS  -------------- */

@@ -40,9 +40,9 @@ function setupClickHandlers() {
 			handleSelectTrack(target)
 		}
 
-		// Podracer form field
-		if (target.matches('.card.podracer')) {
-			handleSelectPodRacer(target)
+		// Racer form field
+		if (target.matches('.card.racer')) {
+			handleSelectRacer(target)
 		}
 
 		// Submit create race form
@@ -54,7 +54,7 @@ function setupClickHandlers() {
 		}
 
 		// Handle acceleration click
-		if (target.matches('#gas-peddle')) {
+		if (target.matches('#gas-pedal')) {
 			handleAccelerate()
 		}
 
@@ -153,17 +153,18 @@ async function runCountdown() {
 	}
 }
 
-function handleSelectPodRacer(target) {
-	console.log("selected a pod", target.id)
+function handleSelectRacer(target) {
+	console.log("selected racer: ", target.id)
 
 	// remove class selected from all racer options
 	const selected = document.querySelector('#racers .selected')
 	if(selected) {
 		selected.classList.remove('selected')
 	}
-
+	
 	// add class selected to current target
 	target.classList.add('selected')
+	const newSelection = document.querySelector('#racers .selected')
 
 	// TODO - save the selected racer to the store
 	store = {...store, player_id: parseInt(target.id)}
@@ -214,12 +215,14 @@ function renderRacerCard(racer) {
 	const { id, driver_name, top_speed, acceleration, handling } = racer
 
 	return `
-		<li class="card podracer" id="${id}">
-			<h3>${driver_name}</h3>
-			<p>${top_speed}</p>
-			<p>${acceleration}</p>
-			<p>${handling}</p>
-		</li>
+		<div id="${driver_name.replace(' ', '-').toLowerCase()}">
+			<li class="card racer" id="${id}">
+				<h3>${driver_name}</h3>
+				<p>Top Speed: ${top_speed}</p>
+				<p>Acceleration: ${acceleration}</p>
+				<p>Handling: ${handling}</p>
+			</li>
+		</div>
 	`
 }
 
@@ -243,9 +246,11 @@ function renderTrackCard(track) {
 	const { id, name } = track
 
 	return `
-		<li id="${id}" class="card track">
-			<h3>${name}</h3>
-		</li>
+		<div id="${name.replace(' ', '-').toLowerCase()}">
+			<li id="${id}" class="card track">
+				<h3>${name}</h3>
+			</li>
+		</div>
 	`
 }
 
@@ -269,7 +274,7 @@ function renderRaceStartView(track, racers) {
 			<section id="accelerate">
 				<h2>Directions</h2>
 				<p>Click the button as fast as you can to make your racer go faster!</p>
-				<button id="gas-peddle">Click Me To Win!</button>
+				<button id="gas-pedal">Click Me To Win!</button>
 			</section>
 		</main>
 		<footer></footer>
